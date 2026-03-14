@@ -6,4 +6,5 @@ export default class View {
 		this.game.style.height = "500px";
 		this.game.style.border = "2px solid black";
 	}
+	
 }
