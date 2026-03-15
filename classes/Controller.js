@@ -7,11 +7,9 @@ export default class Controller {
 		this.mouseX;
 		this.mouseY;
 		
-		window.addEventListener("keydown", (event) => {
-			if(event.key !== undefined && event.key == " ") {
-				this.view.clearCanvas();
-				this.view.bulletTrajectory(this.player, this.mouseX, this.mouseY);
-			}
+		this.view.game.addEventListener("mouseup", (event) => {
+			this.view.clearCanvas();
+			this.view.bulletTrajectory(this.player, this.mouseX, this.mouseY);
 		});
 		this.view.game.addEventListener("mousemove", (e) => {this.updateDisplay(e)});
 		this.view.game.addEventListener("mouseenter", (e) => {this.updateDisplay(e)});

@@ -4,7 +4,7 @@ export default class View {
 		this.ctx = this.game.getContext("2d");
 		this.game.width = 500;
 		this.game.height = 500;
-		this.game.style.border = "2px solid black";
+		this.game.border = 2;
 	}
 	bulletTrajectory(player, mouseX, mouseY) {
 		this.ctx.beginPath();
