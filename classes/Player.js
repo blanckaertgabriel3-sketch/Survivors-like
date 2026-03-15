@@ -4,10 +4,10 @@ export default class Player {
 		this.posY = game.height/2;
 		//directions
 		this.direction = {
-			NORTH: {id: 0, row: 17},
-			EAST: {id: 1, row: 20},
-			SOUTH: {id: 2, row: 19},
-			WEST: {id: 3, row: 18}
+			NORTH: {id: 0, row: 16},
+			EAST: {id: 1, row: 19},
+			SOUTH: {id: 2, row: 18},
+			WEST: {id: 3, row: 17}
 		}
 		//start SOUTH
 		this.currentDirection = this.direction.SOUTH;
@@ -18,7 +18,6 @@ export default class Player {
 		this.walkFrameNumber = 13;
 		this.walkFrameDuration = 5;
 		this.walkFrameStep = 0;
-		this.helloCount = 0;
 	}
 	animate() {
 		//player is walking
@@ -54,15 +53,5 @@ export default class Player {
 		this.currentWalkAnimationRow = this.currentDirection.row;
 		console.log("currentD", this.currentDirection);
 		console.log("row", this.currentWalkAnimationRow);
-	}
-	sayHello() {
-		const loop = () => {
-			if(this.helloCount < 5) {
-				console.log("hello");
-				this.helloCount ++;
-				requestAnimationFrame(loop);
-			}
-		}
-		loop();
 	}
 }
