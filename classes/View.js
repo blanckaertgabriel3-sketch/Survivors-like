@@ -24,7 +24,12 @@ export default class View {
 		this.ctx.clearRect(0, 0, this.game.width, this.game.height);
 	}
 	drawPlayer(player) {
-		this.ctx.drawImage(this.img, player.walkFrameIndex, player.currentWalkAnimationRow*this.spriteWalkSize, this.spriteWalkSize, this.spriteWalkSize, player.posX, player.posY, this.spriteWalkSize, this.spriteWalkSize);
+		if(player.walkFrameIndex == 0) {
+			this.ctx.drawImage(this.img, player.walkFrameIndex, player.currentWalkAnimationRow*this.spriteWalkSize, this.spriteWalkSize, this.spriteWalkSize, player.posX, player.posY, this.spriteWalkSize, this.spriteWalkSize);
+		}
+		else {
+			this.ctx.drawImage(this.img, player.walkFrameIndex*this.spriteWalkSize, player.currentWalkAnimationRow*this.spriteWalkSize, this.spriteWalkSize, this.spriteWalkSize, player.posX, player.posY, this.spriteWalkSize, this.spriteWalkSize);
+		}
 	}
 	render(player) {
 		this.clearCanvas();

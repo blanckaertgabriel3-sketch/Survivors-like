@@ -32,6 +32,7 @@ export default class Controller {
 			this.lastTime = timestamp;
 			if(this.view.imgIsLoaded) {
 				this.view.render(this.player);
+				this.player.animate();
 			}
 		}
 		requestAnimationFrame(this.loop);
