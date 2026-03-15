@@ -11,6 +11,9 @@ export default class Controller {
 			this.view.clearCanvas();
 			this.view.bulletTrajectory(this.player, this.mouseX, this.mouseY);
 		});
+		window.addEventListener("keypress", (event) => {
+			this.player.animate(event);
+		});
 		this.view.game.addEventListener("mousemove", (e) => {this.updateDisplay(e)});
 		this.view.game.addEventListener("mouseenter", (e) => {this.updateDisplay(e)});
 		this.view.game.addEventListener("mouseleave", (e) => {this.updateDisplay(e)});
