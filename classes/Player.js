@@ -5,37 +5,36 @@ export default class Player {
 		this.posY = this.game.height/2;
 		//directions
 		this.direction = {
-			NORTH: {id: 0, row: 16},
-			EAST: {id: 1, row: 19},
-			SOUTH: {id: 2, row: 18},
-			WEST: {id: 3, row: 17}
+			NORTH: {id: 0, attackRow: 16},
+			EAST: {id: 1, attackRow: 19},
+			SOUTH: {id: 2, attackRow: 18},
+			WEST: {id: 3, attackRow: 17}
 		}
 		//start SOUTH
 		this.currentDirection = this.direction.SOUTH;
-		this.currentWalkAnimationRow = this.currentDirection.row;
+		this.currentAttackAnimationRow = this.currentDirection.attackRow;
 		//frames animation
-		this.isWalking = true;
-		this.walkFrameIndex = 0;
-		this.walkFrameNumber = 13;
-		this.walkFrameDuration = 5;
-		this.walkFrameStep = 0;
+		this.isAttacking = true;
+		this.attackFrameIndex = 0;
+		this.attackFrameNumber = 13;
+		this.attackFrameDuration = 5;
+		this.attackFrameStep = 0;
 		this.speed = 5;
 	}
 	animate() {
-		//player is walking
-		if(this.isWalking) {
-			// this.walkFrameIndex = 0;
-			// this.walkFrameStep = 0;
-			if(this.walkFrameStep < this.walkFrameDuration) {
-				this.walkFrameStep +=1;
+		//player is attacking
+		if(this.isAttacking) {
+			// this.attackFrameIndex = 0;
+			// this.attackFrameStep = 0;
+			if(this.attackFrameStep < this.attackFrameDuration) {
+				this.attackFrameStep +=1;
 			}
 			else {
-				this.walkFrameIndex +=1;
-				this.walkFrameStep = 0;
+				this.attackFrameIndex +=1;
+				this.attackFrameStep = 0;
 			}
-			if(this.walkFrameIndex >= this.walkFrameNumber) {
-				this.walkFrameIndex = 0;
-				console.log("end Spritesheet animate");
+			if(this.attackFrameIndex >= this.attackFrameNumber) {
+				this.attackFrameIndex = 0;
 			}
 		}
 	}
@@ -64,6 +63,6 @@ export default class Player {
 				this.posX -= this.speed;
 			}
 		}
-		this.currentWalkAnimationRow = this.currentDirection.row;
+		this.currentAttackAnimationRow = this.currentDirection.attackRow;
 	}
 }

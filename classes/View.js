@@ -9,8 +9,8 @@ export default class View {
 		this.canvasTop = this.game.getBoundingClientRect().top;
 		this.imgIsLoaded = false;
 		this.loadImage();
-		this.spriteWalkSize = 64;
-		this.spriteAttackSize = 128;
+		this.spriteAttackSize = 64;
+		this.spriteWalkSize = 128;
 		
 	}
 	bulletTrajectory(player, mouseX, mouseY) {
@@ -24,11 +24,11 @@ export default class View {
 		this.ctx.clearRect(0, 0, this.game.width, this.game.height);
 	}
 	drawPlayer(player) {
-		if(player.walkFrameIndex == 0) {
-			this.ctx.drawImage(this.img, player.walkFrameIndex, player.currentWalkAnimationRow*this.spriteWalkSize, this.spriteWalkSize, this.spriteWalkSize, player.posX, player.posY, this.spriteWalkSize, this.spriteWalkSize);
+		if(player.attackFrameIndex == 0) {
+			this.ctx.drawImage(this.img, player.attackFrameIndex, player.currentAttackAnimationRow*this.spriteAttackSize, this.spriteAttackSize, this.spriteAttackSize, player.posX, player.posY, this.spriteAttackSize, this.spriteAttackSize);
 		}
 		else {
-			this.ctx.drawImage(this.img, player.walkFrameIndex*this.spriteWalkSize, player.currentWalkAnimationRow*this.spriteWalkSize, this.spriteWalkSize, this.spriteWalkSize, player.posX, player.posY, this.spriteWalkSize, this.spriteWalkSize);
+			this.ctx.drawImage(this.img, player.attackFrameIndex*this.spriteAttackSize, player.currentAttackAnimationRow*this.spriteAttackSize, this.spriteAttackSize, this.spriteAttackSize, player.posX, player.posY, this.spriteAttackSize, this.spriteAttackSize);
 		}
 	}
 	render(player) {
