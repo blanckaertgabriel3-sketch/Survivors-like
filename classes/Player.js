@@ -18,9 +18,9 @@ export default class Player {
 		this.walkFrameNumber = 13;
 		this.walkFrameDuration = 5;
 		this.walkFrameStep = 0;
+		this.helloCount = 0;
 	}
-	animate(direction) {
-		this.changeCurrentDirection(direction);
+	animate() {
 		//player is walking
 		if(this.isWalking) {
 			// this.walkFrameIndex = 0;
@@ -34,6 +34,7 @@ export default class Player {
 			}
 			if(this.walkFrameIndex >= this.walkFrameNumber) {
 				this.walkFrameIndex = 0;
+				console.log("end Spritesheet animate");
 			}
 		}
 	}
@@ -53,5 +54,15 @@ export default class Player {
 		this.currentWalkAnimationRow = this.currentDirection.row;
 		console.log("currentD", this.currentDirection);
 		console.log("row", this.currentWalkAnimationRow);
+	}
+	sayHello() {
+		const loop = () => {
+			if(this.helloCount < 5) {
+				console.log("hello");
+				this.helloCount ++;
+				requestAnimationFrame(loop);
+			}
+		}
+		loop();
 	}
 }
