@@ -21,14 +21,14 @@ export default class Player {
 		this.attackFrameNumber = 13;
 		this.attackFrameDuration = 5;
 		this.attackFrameStep = 0;
-		this.isWalking = true;
+		this.isWalking = false;
 		this.walkFrameIndex = 0;
 		this.walkFrameNumber = 9;
 		this.walkFrameDuration = 0.5;
 		this.walkFrameStep = 0;
+		this.isIdle = true;
 	}
 	animate() {
-		console.log("walkRow", this.currentWalkAnimationRow);
 		//player is attacking
 		if(this.isAttacking) {
 			if(this.attackFrameStep < this.attackFrameDuration) {
@@ -40,6 +40,8 @@ export default class Player {
 			}
 			if(this.attackFrameIndex >= this.attackFrameNumber) {
 				this.attackFrameIndex = 0;
+				this.isAttacking = false;
+				this.isIdle = true;
 			}
 		}
 		//player is attacking
@@ -56,32 +58,56 @@ export default class Player {
 			}
 		}
 	}
-	changeCurrentDirection(direction) {
+	changeCurrentDirection(direction, view) {
 		if(direction.key == "z") {
 			this.currentDirection = this.direction.NORTH;
 			if(this.posY - this.speed > -10) {
 				this.posY -= this.speed;
 			}
+			this.isWalking = true;
 		}
 		else if(direction.key == "d") {
 			this.currentDirection = this.direction.EAST;
 			if(this.posX + this.speed < 440) {
 				this.posX += this.speed;
 			}
+			this.isWalking = true;
 		}
 		else if(direction.key == "s") {
 			this.currentDirection = this.direction.SOUTH;
 			if(this.posY + this.speed < 440) {
 				this.posY += this.speed;
 			}
+			this.isWalking = true;
 		}
 		else if(direction.key == "q") {
 			this.currentDirection = this.direction.WEST;
 			if(this.posX - this.speed > 0) {
 				this.posX -= this.speed;
 			}
+			this.isWalking = true;
 		}
 		this.currentAttackAnimationRow = this.currentDirection.attackRow;
 		this.currentWalkAnimationRow = this.currentDirection.walkRow;
+		if(this.posX <= view.canvasLeft) {
+			//  || this.posX >= view.canvasLeft+view.game.width
+			console.log("border");
+			console.log("x ", this.posX);
+			console.log("left ", view.canvasLeft);
+			console.log("canvasW ", view.game.width);
+
+		}
+	}
+	playerIsIdle(direction) {
+		if(direction.key == "z" || direction.key == "d" || direction.key == "s" || direction.key == "q") {
+			this.isIdle = true;
+			this.isWalking = false;
+			this.isAttacking = false;
+		}
+	}
+	playerIsAttacking() {
+		this.isIdle = false;
+		this.isWalking = false;
+		this.isAttacking = true;
 	}
 }

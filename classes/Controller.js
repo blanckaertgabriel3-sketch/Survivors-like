@@ -14,7 +14,13 @@ export default class Controller {
 		// 	this.view.bulletTrajectory(this.player, this.mouseX, this.mouseY);
 		// });
 		window.addEventListener("keypress", (event) => {
-			this.player.changeCurrentDirection(event);
+			this.player.changeCurrentDirection(event, this.view);
+		});
+		window.addEventListener("keyup", (event) => {
+			this.player.playerIsIdle(event);
+		});
+		this.view.game.addEventListener("click", () => {
+			this.player.playerIsAttacking();
 		});
 		this.view.game.addEventListener("mousemove", (e) => {this.updateDisplay(e)});
 		this.view.game.addEventListener("mouseenter", (e) => {this.updateDisplay(e)});

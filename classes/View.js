@@ -38,7 +38,7 @@ export default class View {
 			dWidth = this.spriteAttackSize;
 			dHeight = this.spriteAttackSize;
 		}
-		else if(player.isWalking) {
+		else if(player.isWalking || player.isIdle) {
 			if(player.walkFrameIndex != 0) {
 				sx = player.walkFrameIndex*this.spriteWalkSize;
 			}
@@ -52,8 +52,6 @@ export default class View {
 			dWidth = this.spriteWalkSize;
 			dHeight = this.spriteWalkSize;
 		}
-		console.log("sx", sx);
-		console.log("sy", sy);
 		this.ctx.drawImage(this.img, sx, sy, sWidth, sHeight, player.posX, player.posY, dWidth, dHeight);
 	}
 	render(player) {
