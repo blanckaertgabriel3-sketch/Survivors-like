@@ -24,12 +24,37 @@ export default class View {
 		this.ctx.clearRect(0, 0, this.game.width, this.game.height);
 	}
 	drawPlayer(player) {
-		if(player.attackFrameIndex == 0) {
-			this.ctx.drawImage(this.img, player.attackFrameIndex, player.currentAttackAnimationRow*this.spriteAttackSize, this.spriteAttackSize, this.spriteAttackSize, player.posX, player.posY, this.spriteAttackSize, this.spriteAttackSize);
+		let sx, sy, sWidth, sHeight, dWidth, dHeight; 
+		if(player.isAttacking) {
+			if(player.attackFrameIndex != 0) {
+				sx = player.attackFrameIndex*this.spriteAttackSize;
+			}
+			else {
+				sx = this.spriteAttackSize;
+			}
+			sy = player.currentAttackAnimationRow*this.spriteAttackSize;
+			sWidth = this.spriteAttackSize;
+			sHeight = this.spriteAttackSize;
+			dWidth = this.spriteAttackSize;
+			dHeight = this.spriteAttackSize;
 		}
-		else {
-			this.ctx.drawImage(this.img, player.attackFrameIndex*this.spriteAttackSize, player.currentAttackAnimationRow*this.spriteAttackSize, this.spriteAttackSize, this.spriteAttackSize, player.posX, player.posY, this.spriteAttackSize, this.spriteAttackSize);
+		else if(player.isWalking) {
+			if(player.walkFrameIndex != 0) {
+				sx = player.walkFrameIndex*this.spriteWalkSize;
+			}
+			else {
+				sx = this.spriteWalkSize;
+			}
+			sy = player.currentWalkAnimationRow*this.spriteWalkSize;
+			sy += this.spriteAttackSize * 54;
+			sWidth = this.spriteWalkSize;
+			sHeight = this.spriteWalkSize;
+			dWidth = this.spriteWalkSize;
+			dHeight = this.spriteWalkSize;
 		}
+		console.log("sx", sx);
+		console.log("sy", sy);
+		this.ctx.drawImage(this.img, sx, sy, sWidth, sHeight, player.posX, player.posY, dWidth, dHeight);
 	}
 	render(player) {
 		this.clearCanvas();
